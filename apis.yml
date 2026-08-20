@@ -8,6 +8,15 @@ created: '2026-07-18'
 modified: '2026-07-18'
 specificationVersion: '0.23'
 tags:
+  - Augmented Reality
+  - ar-sdk
+  - Cloud Recognition
+  - Image Recognition
+  - Spatial Computing
+  - Visual Positioning
+  - Computer-Vision
+  - Developer Tools
+tags_raw:
   - augmented-reality
   - ar-sdk
   - cloud-recognition
@@ -25,6 +34,15 @@ apis:
     humanURL: https://help.easyar.com/EasyAR%20CRS/
     baseURL: https://uac.easyar.com/token/v2
     tags:
+      - Augmented Reality
+      - ar-sdk
+      - Cloud Recognition
+      - Image Recognition
+      - Spatial Computing
+      - Visual Positioning
+      - Computer-Vision
+      - Developer Tools
+    tags_raw:
       - augmented-reality
       - ar-sdk
       - cloud-recognition
