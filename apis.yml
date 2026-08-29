@@ -4,6 +4,17 @@ description: >-
   image-targets online and recognize them from camera key-frames. It provides HTTP web-service APIs for target
   management and recognition, with request-signing/token authentication on per-instance regional base URLs.
 url: https://raw.githubusercontent.com/api-evangelist/easyar-crs-api/refs/heads/main/apis.yml
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - none
+  generated: '2026-08-28'
+  method: derived
 created: '2026-07-18'
 modified: '2026-07-18'
 specificationVersion: '0.23'
