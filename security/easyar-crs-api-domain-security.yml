@@ -1,0 +1,20 @@
+generated: '2026-09-03'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: help.easyar.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Dec  7 02:47:03 2026 GMT
+  hsts: false
+- host: uac.easyar.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Dec  7 02:47:03 2026 GMT
+  hsts: null
+domains:
+- domain: easyar.com
+  dnssec: false
+  caa: []
+  spf: false
+  dmarc: false

@@ -1,0 +1,27 @@
+generated: '2026-09-03'
+method: derived
+source: https://www.easyar.com/doc/en/api/cloud/cloud-recognition/apis.html
+note: >-
+  Derived from the provider's REST API reference; no machine-readable contract is published and no
+  compliance certifications or trust-center claims were found on the site. Reward-only rule
+  respected: the AR/computer-vision market has no declared domain standard for this surface, so no
+  domain_standard entry is asserted.
+standards:
+  - id: oauth2
+    conforms: false
+    evidence: "Authentication is proprietary API Key token (STS-issued, ACL-scoped) or sha256 request signature; no OAuth 2.0 flows."
+  - id: oidc
+    conforms: false
+    evidence: "No OpenID Connect discovery document on any host (probes recorded in well-known/)."
+  - id: rfc9457
+    conforms: false
+    evidence: "Errors use a proprietary {statusCode, result, timestamp} envelope, mostly inside HTTP 200; no application/problem+json."
+  - id: pagination
+    conforms: true
+    evidence: "Documented page-number pagination on GET /targets/infos (pageNum/pageSize, default 5, max 100)."
+  - id: idempotency
+    conforms: false
+    evidence: "No idempotency-key or replay-protection mechanism documented; duplicate-guard is a pre-flight POST /similar check."
+  - id: json:api
+    conforms: false
+    evidence: "Response envelope is proprietary, not JSON:API."

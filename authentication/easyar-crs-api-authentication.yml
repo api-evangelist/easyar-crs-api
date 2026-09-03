@@ -1,0 +1,48 @@
+generated: '2026-09-03'
+method: searched
+source: https://www.easyar.com/doc/en/develop/apikey-auth.html
+docs: https://www.easyar.com/doc/en/develop/apikey-auth.html
+note: >-
+  No OpenAPI is published, so this profile is written from the provider's own authentication docs
+  (Get and use API Key; Introduction to cloud recognition APIs). EasyAR cloud services (CRS cloud
+  recognition, Sparse SpatialMap, Mega Block localization) share one unified API Key system.
+schemes:
+  - name: apiKeyToken
+    type: token
+    in: header
+    header: Authorization
+    description: >-
+      Temporary access token placed in the HTTP Authorization header. Tokens are issued either from
+      the EasyAR development center UI or programmatically from the STS (Security Token Service) by
+      signing apiKey + expires + acl + timestamp with the API Secret (sha256 of sorted key+value
+      concatenation with the secret appended). The acl grants per-service, per-resource, per-permission
+      access, e.g. {service: "ecs:crs", resource: ["<CRS AppId>"], effect: "Allow", permission: ["READ"]}.
+      Tokens expire after the requested validity window (expires, in seconds).
+    docs: https://www.easyar.com/doc/en/develop/apikey-auth.html#api-token
+  - name: requestSignature
+    type: signature
+    in: query-or-body
+    description: >-
+      Signature authentication carries appId (or legacy appKey), timestamp (milliseconds), apiKey and
+      signature as common request parameters instead of an Authorization header. All parameters except
+      image binaries are included in the signature calculation; the signature is the hex sha256 of the
+      sorted key+value concatenation with the API Secret appended.
+    docs: https://www.easyar.com/doc/en/api/cloud/cloud-recognition/apis.html
+token_service:
+  name: UAC / STS token exchange
+  url: https://uac.easyar.com/token/v2
+  note: >-
+    The docs' management checklist points at "the UAC API — Create Token method, using the original
+    APIKey and APISecret to create a Token". No standalone public reference page for the UAC endpoint
+    exists in the English doc sitemap; signing examples in PHP/JS/Python/Java/C#/Go are published on
+    the apikey-auth page. A blank POST to https://uac.easyar.com/token/v2 answers HTTP 400 (live host).
+acl:
+  services: ["ecs:crs", "ecs:spatialmap", "ecs:cls", "ecs:vps1"]
+  effects: ["Allow", "Deny"]
+  permissions: ["READ", "WRITE"]
+warnings:
+  - Do not use API Key and API Secret directly in client applications (Web, WeChat Mini Programs).
+  - Generate tokens server-side and pass them to the client.
+oauth2: false
+openid_connect: false
+mutual_tls: false

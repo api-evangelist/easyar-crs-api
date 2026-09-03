@@ -1,0 +1,45 @@
+generated: '2026-09-03'
+method: probed
+source: live HTTP probes of every host the record knows (registrable domain + www, docs host, token-service baseURL host)
+note: >-
+  No well-known documents are served on any EasyAR host. help.easyar.com answers HTTP 200 for EVERY
+  path with the same HTML meta-refresh shell redirecting to www.easyar.com/view/support.html — those
+  200s are recorded as misses, not documents. easyar.com apex 301s every path to www.easyar.com,
+  where all paths 404. uac.easyar.com (token service) 404s or times out. No WellKnown/SecurityTxt
+  pointer is wired because nothing real was served.
+hosts:
+  - host: www.easyar.com
+    documents:
+      - { path: /.well-known/security.txt, status: 404, file: null }
+      - { path: /.well-known/openid-configuration, status: 404, file: null }
+      - { path: /.well-known/oauth-authorization-server, status: 404, file: null }
+      - { path: /.well-known/api-catalog, status: 404, file: null }
+      - { path: /.well-known/ai-plugin.json, status: 404, file: null }
+      - { path: /.well-known/agent-card.json, status: 404, file: null }
+      - { path: /.well-known/agent.json, status: 404, file: null }
+  - host: easyar.com
+    documents:
+      - { path: /.well-known/security.txt, status: 301, file: null, note: redirects to www.easyar.com where the path 404s }
+      - { path: /.well-known/openid-configuration, status: 301, file: null }
+      - { path: /.well-known/oauth-authorization-server, status: 301, file: null }
+      - { path: /.well-known/api-catalog, status: 301, file: null }
+      - { path: /.well-known/agent-card.json, status: 301, file: null }
+      - { path: /.well-known/agent.json, status: 301, file: null }
+  - host: help.easyar.com
+    documents:
+      - { path: /.well-known/security.txt, status: 200, file: null, note: HTML meta-refresh shell served for every path — not a document, treated as a miss }
+      - { path: /.well-known/openid-configuration, status: 200, file: null, note: same catch-all HTML shell }
+      - { path: /.well-known/oauth-authorization-server, status: 200, file: null, note: same catch-all HTML shell }
+      - { path: /.well-known/api-catalog, status: 200, file: null, note: same catch-all HTML shell }
+      - { path: /.well-known/ai-plugin.json, status: 200, file: null, note: same catch-all HTML shell }
+      - { path: /.well-known/agent-card.json, status: 200, file: null, note: same catch-all HTML shell }
+      - { path: /.well-known/agent.json, status: 200, file: null, note: same catch-all HTML shell }
+  - host: uac.easyar.com
+    documents:
+      - { path: /.well-known/security.txt, status: 404, file: null }
+      - { path: /.well-known/openid-configuration, status: 0, file: null, note: connection timeout }
+      - { path: /.well-known/oauth-authorization-server, status: 0, file: null, note: connection timeout }
+      - { path: /.well-known/api-catalog, status: 0, file: null, note: connection timeout }
+      - { path: /.well-known/ai-plugin.json, status: 404, file: null }
+      - { path: /.well-known/agent-card.json, status: 404, file: null }
+      - { path: /.well-known/agent.json, status: 404, file: null }

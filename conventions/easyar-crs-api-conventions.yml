@@ -1,0 +1,80 @@
+generated: '2026-09-03'
+method: searched
+source: https://www.easyar.com/doc/en/api/cloud/cloud-recognition/apis.html
+note: >-
+  Cross-cutting semantics of the EasyAR CRS Web Service API, read from the provider's REST API
+  reference (no machine-readable contract is published). Two distinct endpoints per image library
+  instance - a Server-end URL (target management, HTTPS port 443) and a Client-end URL (recognition,
+  HTTPS port 8443, host shaped like <your-domain>-cn1.crs.easyar.com) - plus the shared UAC/STS
+  token service at uac.easyar.com.
+auth:
+  style: api-key-token-or-request-signature
+  see: authentication/easyar-crs-api-authentication.yml
+  common_parameters: [appId, timestamp, apiKey, signature]
+versioning:
+  style: uri
+  evidence: "POST /v2/search (recognition) and the token service path /token/v2; management paths (/targets, /target/<id>) are unversioned"
+pagination:
+  style: page-number
+  params: { page: pageNum, size: pageSize }
+  defaults: { pageNum: 1, pageSize: 5 }
+  max_page_size: 100
+  applies_to: "GET /targets/infos"
+error_envelope:
+  shape: "{statusCode, result, timestamp}"
+  see: errors/easyar-crs-api-problem-types.yml
+media_types:
+  management: application/json
+  recognition: multipart/form-data
+payload_limits:
+  image: 2MB base64 (JPG/PNG)
+  meta: 2MB
+idempotency:
+  coverage: none
+  note: >-
+    No idempotency-key mechanism or replay protection is documented anywhere in the CRS API
+    reference. GET/DELETE operations are naturally idempotent; POST /targets is not, and the docs
+    instead recommend calling POST /similar before creation to avoid duplicate targets
+    (statusCode 403 "Target already exists" / 419 similar-target guard on update).
+reversibility:
+  note: >-
+    Write surface is target-image CRUD. Every created target can be removed or disabled at any time;
+    the docs state no time window on any reversal path, so all grades are 'documented'.
+  writes:
+    - operation: "POST /targets (create target)"
+      reversal: "DELETE /target/<target_id>"
+      window: null
+      grade: documented
+      docs: https://www.easyar.com/doc/en/api/cloud/cloud-recognition/target-delete.html
+    - operation: "PUT /target/<target_id> (modify target)"
+      reversal: "PUT /target/<target_id> with prior values (no server-side undo or version history)"
+      window: null
+      grade: documented
+      docs: https://www.easyar.com/doc/en/api/cloud/cloud-recognition/target-update.html
+    - operation: "target activation (active flag)"
+      reversal: "toggle active '1'/'0' via PUT /target/<target_id>"
+      window: null
+      grade: documented
+      docs: https://www.easyar.com/doc/en/api/cloud/cloud-recognition/target-update.html
+  dry_run_mode:
+    available: partial
+    note: >-
+      No dry-run parameter exists, but the provider publishes pre-flight rehearsal endpoints that
+      are the recommended practice before the real write: POST /grade/detection|/grade/tracking|
+      /grade/detail (recognizability rating) and POST /similar (duplicate check) let a caller
+      validate an image without creating anything.
+request_id_tracing:
+  documented: false
+rate_limit_signaling:
+  headers: []
+  note: >-
+    No X-RateLimit-*/RateLimit-*/Retry-After headers are documented. Quota exhaustion surfaces as
+    business statusCode 21 - HTTP 402 for the daily scanning limit, HTTP 200 for QPS overrun.
+  see: rate-limits/easyar-crs-api-rate-limits.yml
+connection:
+  note: "Docs recommend Connection: Keep-Alive on the recognition channel to cut repeated-connection overhead."
+cross_links:
+  errors: errors/easyar-crs-api-problem-types.yml
+  authentication: authentication/easyar-crs-api-authentication.yml
+  lifecycle: lifecycle/easyar-crs-api-lifecycle.yml
+  rate_limits: rate-limits/easyar-crs-api-rate-limits.yml

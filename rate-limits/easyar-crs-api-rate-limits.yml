@@ -1,0 +1,29 @@
+generated: '2026-09-03'
+method: searched
+source: https://www.easyar.com/price.html
+docs: https://www.easyar.com/doc/en/api/cloud/cloud-recognition/target-search.html
+limit_count: 2
+note: >-
+  Limits are quota-shaped and tied to the purchased CRS plan rather than published as fixed
+  per-endpoint numbers. No rate-limit response headers are documented; exhaustion is signalled in
+  the response envelope (statusCode 21).
+limits:
+  - scope: per-instance daily API calls
+    window: 1 day
+    limit: "plan tier: 500 (trial) / 10,000 ($89 per month) / 20,000 ($178 per month) API calls/day"
+    burst: null
+    on_exhaustion:
+      status: 402
+      statusCode: 21
+      message: "You have exceeded the limit of daily scanning."
+      note: "Overage billable at $0.01 per call depending on billing method."
+  - scope: per-instance QPS (recognition requests/second)
+    window: 1 second
+    limit: "plan-dependent; number not published"
+    burst: null
+    on_exhaustion:
+      status: 200
+      statusCode: 21
+      message: "Exceed your QPS limitation."
+headers: []
+headers_note: "No X-RateLimit-*, RateLimit-* or Retry-After headers are documented; agents must read statusCode 21 from the JSON envelope."

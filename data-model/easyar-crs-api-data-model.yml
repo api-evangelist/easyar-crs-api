@@ -1,0 +1,25 @@
+generated: '2026-09-03'
+method: derived
+source: https://www.easyar.com/doc/en/api/cloud/cloud-recognition/apis.html
+note: >-
+  Entity-relationship graph derived from the CRS docs (no OpenAPI exists to derive from).
+entities:
+  - name: CloudDatabase
+    description: A CRS image-library instance, created per data-center region (China-Shanghai or US-Silicon Valley); identified by a CRS AppId and issued a Server-end URL (management, :443) and Client-end URL (recognition, :8443).
+    key: appId
+  - name: Target
+    description: An image target in a cloud database gallery (up to 100,000 per database).
+    key: targetId
+    fields: [targetId, trackingImage, name, size, meta, type, active, modified, trackableRate, detectableRate, detectableDistinctiveness, detectableFeatureCount, trackableDistinctiveness, trackableFeatureCount, trackableFeatureDistribution, trackablePatchContrast, trackablePatchAmbiguity]
+  - name: ApiKey
+    description: Unified cloud-service credential (API Key + API Secret) created in the developer center, scoped to services (Cloud Recognition, SpatialMap, Mega...).
+    key: apiKey
+  - name: Token
+    description: Temporary STS-issued access credential bound to an ACL (service/resource/effect/permission) with an expiry window.
+relationships:
+  - { from: CloudDatabase, to: Target, type: has_many, via: appId }
+  - { from: ApiKey, to: Token, type: has_many, via: token issuance (uac.easyar.com/token/v2) }
+  - { from: Token, to: CloudDatabase, type: belongs_to, via: "acl.resource = CRS AppId" }
+id_conventions:
+  targetId: UUID (e.g. e61db301-e80f-4025-b822-9a00eb48d8d2)
+  appId: "region-qualified in some flows (e.g. C:CN1:<hex>)"

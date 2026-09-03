@@ -1,0 +1,25 @@
+generated: '2026-09-03'
+method: derived
+source: https://www.easyar.com/doc/en/api/cloud/cloud-recognition/apis.html
+note: >-
+  Derived from the CRS docs and site; the provider publishes no formal API lifecycle documents.
+versioning:
+  scheme: uri
+  current: v2
+  evidence: "POST /v2/search recognition endpoint and /token/v2 token service; management endpoints are unversioned"
+deprecation_policy:
+  published: false
+  note: >-
+    No deprecation policy, Sunset/Deprecation headers (RFC 8594) or API version retirement schedule
+    is published. One hard break is visible in the error catalog: statusCode 8 "Dau databases are
+    not compatible with sense-4.6+ any more".
+status_page:
+  published: false
+  note: No public status page was found on easyar.com; /ping health-check endpoints (server-end and client-end) are the only availability signal.
+sla:
+  published: false
+  note: The pricing page references a "Service Levels sheet" for EasyAR Mega plans only; no SLA is published for CRS.
+health_check:
+  endpoint: GET /ping
+  auth: none
+  docs: https://www.easyar.com/doc/en/api/cloud/cloud-recognition/ping.html

@@ -1,0 +1,44 @@
+generated: '2026-09-03'
+method: derived
+source: https://www.easyar.com/doc/en/api/cloud/cloud-recognition/apis.html
+status: candidate
+note: >-
+  EasyAR ships no MCP server - hosted or installable. Search found only a third-party experiment
+  (github.com/terri1982/mcp-easyar), which is not provider-published. The tool list below is a
+  CANDIDATE derived from the documented REST operations of the CRS Web Service API; nothing here is
+  callable as MCP today.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: derived
+candidate_tools:
+  - name: grade_image
+    description: Rate an image's cloud-recognition difficulty (0-4; -1 non-compliant) before creating a target.
+    rest: "POST /grade/detection | /grade/tracking | /grade/detail"
+  - name: check_similar_targets
+    description: Check whether similar target images already exist in the gallery.
+    rest: "POST /similar"
+  - name: create_target
+    description: Upload a base64 image to create a new image target (name, size, meta, active).
+    rest: "POST /targets"
+  - name: list_targets
+    description: Page through target images in the gallery (pageNum/pageSize).
+    rest: "GET /targets/infos"
+  - name: get_target
+    description: Get detailed information for a single target image.
+    rest: "GET /target/<target_id>"
+  - name: update_target
+    description: Modify target image attributes (image, name, size, meta, active).
+    rest: "PUT /target/<target_id>"
+  - name: delete_target
+    description: Delete a target image.
+    rest: "DELETE /target/<target_id>"
+  - name: search_by_image
+    description: Recognize a camera frame against the cloud gallery (Client-end URL, port 8443).
+    rest: "POST /v2/search"
+  - name: ping
+    description: Health-check the service (no auth).
+    rest: "GET /ping"

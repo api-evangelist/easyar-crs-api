@@ -1,0 +1,57 @@
+generated: '2026-09-03'
+method: searched
+source: https://www.easyar.com/view/download.html
+note: >-
+  EasyAR publishes NO first-party packages on public registries (npm, PyPI, Maven Central, NuGet,
+  pkg.go.dev, RubyGems, Packagist, crates.io all miss). Official SDKs are vendor downloads from
+  www.easyar.com/view/download.html - versions are shown unauthenticated but the download itself
+  requires a developer-center login. Published dates are not shown on the page, so published is
+  null (checked, nothing to record). The first-party GitHub org (github.com/EasyAR, blog
+  sightp.com = VisionStar) has been dormant since 2016; its irsdk-node predates the current CRS v2
+  API. The npm packages named "easyar" are third-party wrappers, not provider-published.
+packages:
+  - name: EasyAR Sense
+    registry: vendor-download
+    url: https://www.easyar.com/view/download.html
+    language: C/C++/Java/Kotlin/Swift/Objective-C
+    official: true
+    version: 4.10.0
+    published: null
+    published_note: release date not shown on the download page; download gated behind developer-center login
+    note: Standalone AR SDK; client-side CRS support (CloudRecognizer) is a Sense feature.
+  - name: EasyAR Sense Unity Plugin
+    registry: vendor-download
+    url: https://www.easyar.com/view/download.html
+    language: C#/Unity
+    official: true
+    version: 4003.1.0
+    published: null
+    published_note: release date not shown on the download page; download gated behind developer-center login
+  - name: EasyAR CRS WeChat Miniprogram Sample
+    registry: vendor-download
+    url: https://www.easyar.com/view/download.html
+    language: JavaScript (WeChat Mini Program)
+    official: true
+    version: 2.0.0
+    published: null
+    published_note: release date not shown on the download page
+    note: Integration demo for calling CRS from a WeChat Mini Program.
+third_party:
+  - name: easyar
+    registry: npm
+    url: https://www.npmjs.com/package/easyar
+    official: false
+    version: 1.0.0
+    published: '2017-12-19'
+    note: Community wrapper "for easyar sdk" by weblinuxgame; not provider-published.
+  - name: easyar-nodejs-sdk
+    registry: npm
+    url: https://www.npmjs.com/package/easyar-nodejs-sdk
+    official: false
+    version: 1.0.5
+    published: '2019-02-26'
+    note: Community Node.js wrapper by gerem; not provider-published.
+github_org:
+  url: https://github.com/EasyAR
+  status: dormant (no pushes since 2016)
+  note: irsdk-node (2015) was a Node.js SDK for the earlier image-recognition service.

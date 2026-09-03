@@ -1,8 +1,7 @@
 name: EasyAR CRS API
-description: >-
-  EasyAR CRS (Cloud Recognition Service) is a cloud image-recognition solution that lets developers manage up to 100K
-  image-targets online and recognize them from camera key-frames. It provides HTTP web-service APIs for target
-  management and recognition, with request-signing/token authentication on per-instance regional base URLs.
+description: EasyAR CRS (Cloud Recognition Service) is a cloud image-recognition solution that lets developers manage
+  up to 100K image-targets online and recognize them from camera key-frames. It provides HTTP web-service APIs for
+  target management and recognition, with request-signing/token authentication on per-instance regional base URLs.
 url: https://raw.githubusercontent.com/api-evangelist/easyar-crs-api/refs/heads/main/apis.yml
 deliveryModel:
   model: unknown
@@ -16,9 +15,34 @@ deliveryModel:
   generated: '2026-08-28'
   method: derived
 created: '2026-07-18'
-modified: '2026-07-18'
+modified: '2026-09-03'
 specificationVersion: '0.23'
 tags:
+- Augmented Reality
+- ar-sdk
+- Cloud Recognition
+- Image Recognition
+- Spatial Computing
+- Visual Positioning
+- Computer-Vision
+- Developer Tools
+tags_raw:
+- augmented-reality
+- ar-sdk
+- cloud-recognition
+- image-recognition
+- spatial-computing
+- visual-positioning
+- computer-vision
+- developer-tools
+apis:
+- name: EasyAR CRS Web Service API
+  description: 'REST/HTTP API for cloud image recognition: target management endpoints (/targets/, /target/<id>,
+    /grade/detection/, /ping) and a recognition endpoint (/search), plus a token exchange service. Uses per-instance,
+    per-region base URLs issued when a CRS App Instance is created.'
+  humanURL: https://www.easyar.com/doc/en/api/cloud/cloud-recognition/apis.html
+  baseURL: https://uac.easyar.com/token/v2
+  tags:
   - Augmented Reality
   - ar-sdk
   - Cloud Recognition
@@ -27,7 +51,7 @@ tags:
   - Visual Positioning
   - Computer-Vision
   - Developer Tools
-tags_raw:
+  tags_raw:
   - augmented-reality
   - ar-sdk
   - cloud-recognition
@@ -36,42 +60,68 @@ tags_raw:
   - visual-positioning
   - computer-vision
   - developer-tools
-apis:
-  - name: EasyAR CRS Web Service API
-    description: >-
-      REST/HTTP API for cloud image recognition: target management endpoints (/targets/, /target/<id>,
-      /grade/detection/, /ping) and a recognition endpoint (/search), plus a token exchange service. Uses per-instance,
-      per-region base URLs issued when a CRS App Instance is created.
-    humanURL: https://help.easyar.com/EasyAR%20CRS/
-    baseURL: https://uac.easyar.com/token/v2
-    tags:
-      - Augmented Reality
-      - ar-sdk
-      - Cloud Recognition
-      - Image Recognition
-      - Spatial Computing
-      - Visual Positioning
-      - Computer-Vision
-      - Developer Tools
-    tags_raw:
-      - augmented-reality
-      - ar-sdk
-      - cloud-recognition
-      - image-recognition
-      - spatial-computing
-      - visual-positioning
-      - computer-vision
-      - developer-tools
-    properties:
-      - type: Documentation
-        url: https://help.easyar.com/EasyAR%20CRS/
-      - type: Documentation
-        url: https://www.easyar.com/doc/en/
+  properties:
+  - type: Documentation
+    url: https://www.easyar.com/doc/en/
+  - type: APIReference
+    url: https://www.easyar.com/doc/en/api/cloud/cloud-recognition/apis.html
+  - type: GettingStarted
+    url: https://www.easyar.com/doc/en/develop/cloud-recognition/intro.html
 maintainers:
-  - FN: EasyAR
-    url: https://www.easyar.com/
+- FN: EasyAR
+  url: https://www.easyar.com/
+  email: support@easyar.com
 generated:
   by: apis.io/add
   model: claude-opus-4-8
   confidence: 88
   at: '2026-07-18T15:08:55.583Z'
+common:
+- type: Website
+  url: https://www.easyar.com
+- type: DomainSecurity
+  url: security/easyar-crs-api-domain-security.yml
+- type: Authentication
+  url: authentication/easyar-crs-api-authentication.yml
+- type: ErrorCatalog
+  url: errors/easyar-crs-api-problem-types.yml
+- type: Conventions
+  url: conventions/easyar-crs-api-conventions.yml
+- type: Lifecycle
+  url: lifecycle/easyar-crs-api-lifecycle.yml
+- type: Conformance
+  url: conformance/easyar-crs-api-conformance.yml
+- type: Plans
+  url: plans/easyar-crs-api-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/easyar-crs-api-rate-limits.yml
+- type: Packages
+  url: packages/easyar-crs-api-packages.yml
+- type: SDKs
+  url: packages/easyar-crs-api-packages.yml
+- type: MCPServer
+  url: mcp/easyar-crs-api-mcp.yml
+- type: LLMsTxt
+  url: llms/easyar-crs-api-llms.txt
+- type: DataModel
+  url: data-model/easyar-crs-api-data-model.yml
+- type: Support
+  url: https://www.easyar.com/view/support.html
+- type: Blog
+  url: https://www.easyar.com/news/
+- type: GitHubOrganization
+  url: https://github.com/EasyAR
+- type: Pricing
+  url: https://www.easyar.com/price.html
+- type: SignUp
+  url: https://www.easyar.com/view/signup.html
+- type: TermsOfService
+  url: https://www.easyar.com/view/developerAgreement.html
+- type: PrivacyPolicy
+  url: https://www.easyar.com/view/privacyPolicy.html
+image: https://www.easyar.com/static/image/logo.png
+x-enrichment:
+  date: '2026-09-03'
+  status: enriched
+  artifacts_added: 13
+  pass: local-v2

@@ -1,0 +1,52 @@
+generated: '2026-09-03'
+method: searched
+source: https://www.easyar.com/doc/en/api/cloud/cloud-recognition/status-code.html
+format: custom-envelope
+note: >-
+  CRS does not use RFC 9457 problem+json. Every response carries a unified JSON envelope
+  {statusCode, result, timestamp} where statusCode 0 is success and business errors are typically
+  returned inside an HTTP 200 response, identified by the statusCode field. The recognition
+  endpoint (/v2/search) additionally maps some business errors onto distinct HTTP codes.
+envelope:
+  fields:
+    - { name: statusCode, type: integer, description: "Business status code, 0 = success, non-0 = error" }
+    - { name: result, type: string-or-object, description: "Target object structure on success; error message otherwise" }
+    - { name: timestamp, type: long, description: "Server Unix timestamp in milliseconds" }
+http_codes:
+  - { status: 200, meaning: "Request successful (may still contain business errors in statusCode)" }
+  - { status: 400, meaning: "Request parameter error" }
+  - { status: 401, meaning: "APIKey authentication failed" }
+  - { status: 403, meaning: "Insufficient permissions or resource access forbidden" }
+  - { status: 404, meaning: "Requested URL interface path does not exist" }
+  - { status: 500, meaning: "Internal server error" }
+  - { status: 501, meaning: "Application exception caught, possible data error" }
+  - { status: 502, meaning: "Server unavailable, contact customer service" }
+business_codes:
+  - { code: 0, message: ok }
+  - { code: 1, message: "invalid appId (appKey)" }
+  - { code: 2, message: "invalid signature" }
+  - { code: 3, message: "invalid date" }
+  - { code: 4, message: "appId (appKey) not exist" }
+  - { code: 6, message: "invalid token / invalid appkey token" }
+  - { code: 7, message: "non-sdk client for dau databases" }
+  - { code: 8, message: "Dau databases are not compatible with sense-4.6+ any more" }
+  - { code: 17, message: "No result: there is no matching", http: 404, endpoint: /v2/search }
+  - { code: 18, message: "Target not found: matching but no target — report IMAGE-UUID", http: 500, endpoint: /v2/search }
+  - { code: 19, message: "Request timeout", http: 408, endpoint: /v2/search }
+  - { code: 20, message: "Error retrieving results (RPC error)", http: 500, endpoint: /v2/search }
+  - { code: 21, message: "Exceeded daily scanning limit (HTTP 402) or QPS limitation (HTTP 200)", endpoint: /v2/search }
+  - { code: 30, message: "Other error occurred", http: 501, endpoint: /v2/search }
+  - { code: 403, message: "Target already exists" }
+  - { code: 404, message: "Target not found" }
+  - { code: 414, message: "Parameter required not exists or not correct" }
+  - { code: 417, message: "fail to add image" }
+  - { code: 419, message: "Cannot update target because similar target exists" }
+  - { code: 420, message: "Target delete failed" }
+  - { code: 422, message: "The image or meta exceeds its maximum permitted size (2MB)" }
+  - { code: 424, message: "Target enable error" }
+  - { code: 426, message: "Judge exceeds maximum candidates" }
+  - { code: 427, message: "Image not correct (unsupported format or corrupted file)" }
+remediation:
+  - "Judge business success on the statusCode field, not the HTTP status code alone (provider best practice)."
+  - "Retry 5xx errors with restraint; for 4xx check request parameters."
+  - "Set a request timeout; log complete error responses for troubleshooting."
