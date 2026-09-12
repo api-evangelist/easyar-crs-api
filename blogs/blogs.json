@@ -1,0 +1,14 @@
+{
+  "repo": "easyar-crs-api",
+  "feeds": [
+    {
+      "source": "https://www.easyar.com/view/support.html",
+      "feed_url": "https://www.easyar.com/view/support.html",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-09-06T19:17:18Z"
+}
