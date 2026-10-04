@@ -24,7 +24,7 @@ tags:
 - Image Recognition
 - Spatial Computing
 - Visual Positioning
-- Computer-Vision
+- Computer Vision
 - Developer Tools
 tags_raw:
 - augmented-reality
@@ -35,6 +35,7 @@ tags_raw:
 - visual-positioning
 - computer-vision
 - developer-tools
+- Computer-Vision
 apis:
 - name: EasyAR CRS Web Service API
   description: 'REST/HTTP API for cloud image recognition: target management endpoints (/targets/, /target/<id>,
@@ -49,7 +50,7 @@ apis:
   - Image Recognition
   - Spatial Computing
   - Visual Positioning
-  - Computer-Vision
+  - Computer Vision
   - Developer Tools
   tags_raw:
   - augmented-reality
@@ -60,6 +61,7 @@ apis:
   - visual-positioning
   - computer-vision
   - developer-tools
+  - Computer-Vision
   properties:
   - type: Documentation
     url: https://www.easyar.com/doc/en/
