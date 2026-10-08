@@ -29,3 +29,29 @@ overage:
 promotions:
   - "Subscribe for 10 months and get 2 months free (annual)."
 enterprise_contact: support@easyar.com
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - subscription
+  units: []
+  plans:
+  - name: Free trial
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: CRS 10K
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: CRS 20K
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
